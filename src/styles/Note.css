@@ -1,0 +1,12 @@
+.btn-gradient {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+  box-shadow: 0 0 10px rgba(38, 92, 255, 0.6);
+}
+

@@ -1,0 +1,509 @@
+/* Navbar Link Hover Effect */
+.nav-link {
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #ffffff !important;
+  border-radius: 4px; /* Add rounded corners on hover */
+}
+
+/* Navbar Brand Hover Effect */
+.navbar-brand:hover {
+  color: #28a745 !important;
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Input Search Placeholder */
+input[type="search"]::placeholder {
+  color: #bbb;
+  font-style: italic; /* Slight italic for better contrast */
+}
+
+/* Body Global Styles (Light & Dark Mode) */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode */
+body.light-mode {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Navbar Customization for Modes */
+.navbar-light .navbar-nav .nav-link {
+  color: #212529;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #f1f1f1;
+}
+
+/* Toggle Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* Toggle Active State */
+input:checked + .slider {
+  background-color: #4caf50; /* Green when active */
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Label (Day/Night icons) */
+.mode-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+input:checked + .slider .mode-label {
+  opacity: 0; /* Hide when dark mode is active */
+}
+
+input:not(:checked) + .slider .mode-label {
+  opacity: 1; /* Show when light mode is active */
+}
+
+/* Improved Mobile View */
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+
+.bg-body-tertiary {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode .bg-body-tertiary {
+  background-color: rgba(33, 33, 33, 0.95);
+}
+
+h2 {
+  transition: color 0.3s ease;
+}
+
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: var(--bs-heading-color, inherit);
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 60%;
+  height: 3px;
+  border-radius: 2px;
+  background-color: aqua;
+  opacity: 0.8;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode support */
+body.dark-mode .section-title::after {
+  background-color: aqua; /* lighter green for dark background */
+}
+
+/* Base styling for links */
+.nav-link {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #007bff; /* Blue color */
+  transition: width 0.3s ease;
+}
+
+/* Active link styling */
+.nav-link.active {
+  color: #007bff; /* Blue color for active links */
+}
+
+/* Hover effect on link */
+.nav-link:hover {
+  color: #007bff; /* Change text color on hover */
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Navbar Link Hover Effect */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Custom Hover Effect with Gradient */
+.nav-link:hover {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient from pink to orange */
+  color: #ffffff !important;
+  border-radius: 4px; /* Add rounded corners on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Navbar Brand Hover Effect */
+.navbar-brand:hover {
+  color: #28a745 !important;
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Active link styling */
+.nav-link.active {
+  color: #ff7e5f; /* Active color that matches the hover gradient */
+  font-weight: bold;
+  text-decoration: underline; /* Underline for active state */
+}
+
+/* Underline effect on hover */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ff7e5f; /* Pink color */
+  transition: width 0.3s ease;
+}
+
+/* Hover underline */
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Stylish Login and Sign Up buttons */
+.custom-btn-login,
+.custom-btn-signup {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;  /* Rounded corners */
+  transition: all 0.3s ease;  /* Smooth transitions */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+}
+
+.custom-btn-login {
+  background-color: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+.custom-btn-login:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+  transform: translateY(-2px);  /* Button lift effect on hover */
+}
+
+.custom-btn-signup {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  color: #fff;
+}
+
+.custom-btn-signup:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+  transform: translateY(-2px);  /* Button lift effect on hover */
+}
+
+/* Optional: Add active state styles for clicks */
+.custom-btn-login:active,
+.custom-btn-signup:active {
+  transform: translateY(0px);  /* Remove lift on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Stylish Login and Sign Up buttons with the same style */
+.custom-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;  /* Rounded corners */
+  transition: all 0.3s ease;  /* Smooth transitions */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+  border: 2px solid #007bff;  /* Border color */
+  background-color: transparent;
+  color: #007bff;
+}
+
+.custom-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+  transform: translateY(-2px);  /* Button lift effect on hover */
+}
+
+.custom-btn:active {
+  transform: translateY(0px);  /* Remove lift on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add this to your CSS file for hover effect */
+.hover\:bg-danger-dark:hover {
+  background-color: #c82333; /* Darker shade of red for hover */
+}
+
+/* Container for the notes section */
+.notes-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background-color: #ffffff; /* Light background for light mode */
+  color: #212529;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode styles */
+body.dark-mode .notes-container {
+  background-color: #1e1e1e; /* Darker background */
+  color: #f1f1f1; /* Light text */
+  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+}
+
+/* Header with title and add button */
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Add Note button */
+.add-note-btn {
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 24px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 126, 95, 0.5);
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-note-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 18px rgba(255, 126, 95, 0.7);
+}
+
+/* No notes message */
+.no-notes-msg {
+  font-style: italic;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: #666666; /* Light mode gray */
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .no-notes-msg {
+  color: #bbbbbb; /* Lighter gray for dark mode */
+}
+
+.your-notes{
+  color: red;
+}
+
+.no-notes{
+  color: red;
+}
+
+.text-muted {
+  color: #6c757d; /* default muted color */
+}
+
+body.dark-mode .text-muted {
+  color: white;
+}
+
+.card {
+  width: 100%;       /* Ensure card uses full column width */
+  min-width: 250px;  /* Optional minimum width */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body .btn {
+  margin-right: 8px;
+}
+
+.card-text {
+  white-space: normal; /* Avoid vertical stacking by breaking lines normally */
+}
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.note-card {
+  flex: 1 1 300px; /* grow/shrink with base width 300px */
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: white;
+  min-height: 250px; /* same height for all cards */
+}
+
+.note-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-content {
+  flex-grow: 1; /* take all remaining space */
+  overflow-y: auto; /* scroll if content is too long */
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.modal-content {
+  transition: all 0.3s ease-in-out;
+  border-radius: 1rem;
+}
+
+.form-control-lg {
+  border-radius: 0.6rem;
+  font-size: 1rem;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+}
+
+.btn-close {
+  filter: invert(0.5);
+}
+
+/* Modal styling for better aesthetics */
+.modal-content {
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.modal-header h5 {
+  font-weight: 600;
+}
+
+.modal-body input,
+.modal-body textarea {
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.modal-footer button {
+  min-width: 120px;
+}
+
+/* Optional light hover on buttons */
+.btn:hover {
+  opacity: 0.95;
+}
+
+/* Responsive text truncation for long titles/tags if needed */
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tag styling */
+.note-tag {
+  background-color: #d0f0fd;
+  color: #0275d8;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+}
