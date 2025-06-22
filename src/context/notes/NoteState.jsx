@@ -9,12 +9,13 @@ const NoteState = (props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredNotes = searchQuery
-    ? notes.filter(note =>
-        note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        note.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        note.tag.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : notes;
+  ? notes.filter(note =>
+      (note.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (note.description || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (note.tag || '').toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  : notes;
+
 
   // ✅ Fetch all notes
   const getNotes = async () => {

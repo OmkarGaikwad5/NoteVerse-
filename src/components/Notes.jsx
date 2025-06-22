@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Note.css';
 
 const Notes = ({ showAlert }) => {
-  const { notes, getNotes, addNote, editNote } = useContext(NoteContext);
+  const { filteredNotes, getNotes, addNote, editNote } = useContext(NoteContext);
   const navigate = useNavigate();
 
   const [newNote, setNewNote] = useState({ title: '', description: '', tag: '' });
@@ -98,22 +98,22 @@ const Notes = ({ showAlert }) => {
         </button>
       </div>
 
-      {/* 🗂️ Notes List */}
-      <div className="row">
-        {notes.length > 0 ? (
-          notes.map((note) => (
-            <Noteitem
-              key={note._id}
-              note={note}
-              showAlert={showAlert}
-              viewNote={viewNote}
-              updateNote={handleEditClick}
-            />
-          ))
-        ) : (
-          <p className="text-muted">No notes found. Please add one.</p>
-        )}
-      </div>
+     <div className="row">
+  {filteredNotes.length > 0 ? (
+    filteredNotes.map((note) => (
+      <Noteitem
+        key={note._id}
+        note={note}
+        showAlert={showAlert}
+        viewNote={viewNote}
+        updateNote={handleEditClick}
+      />
+    ))
+  ) : (
+    <p className="text-muted">No matching notes found.</p>
+  )}
+</div>
+
 
       {/* 🔍 View Note Modal */}
    <div className="modal fade" id="viewNoteModal" tabIndex="-1" aria-hidden="true">

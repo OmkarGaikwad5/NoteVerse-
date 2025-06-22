@@ -26,11 +26,16 @@ function Login({ showAlert }) {
         return;
       }
 
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        showAlert("Login Successful", "success");
-        navigate("/");
-      }
+     if (data.token) {
+  localStorage.setItem("token", data.token);
+  showAlert("Login Successful", "success");
+
+  // 🔥 Dispatch custom event
+  window.dispatchEvent(new Event("authChanged"));
+
+  navigate("/");
+}
+
     } catch (error) {
       console.error("Login error:", error);
       setErrorMsg("Network error. Please try again.");
