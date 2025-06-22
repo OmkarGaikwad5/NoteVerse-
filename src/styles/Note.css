@@ -10,3 +10,13 @@
   box-shadow: 0 0 10px rgba(38, 92, 255, 0.6);
 }
 
+.note-grid .card {
+  min-height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.note-grid .card:hover {
+  transform: scale(1.02);
+}
+
+

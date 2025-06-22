@@ -3,7 +3,13 @@
   background: rgb(181, 181, 239);
 }
 
+.container-fluid{
+  gap: 20px;
+}
 
+.nav-item Link{
+  gap: 10px;
+}
 .switch {
   position: relative;
   display: inline-block;

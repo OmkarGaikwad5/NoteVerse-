@@ -67,7 +67,7 @@ function Navbar({ showAlert }) {
 >
 
 
-      <div className="container-fluid">
+      <div className="container-fluid text-center">
         <Link className="navbar-brand fw-bold text-decoration-none" to="/">NoteVerse</Link>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
@@ -75,20 +75,64 @@ function Navbar({ showAlert }) {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item ">
-              <Link className={`nav-link text-decoration-none  ${location.pathname === "/" ? "active" : ""}`} to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
-            </li>
-          </ul>
+       {isLoggedIn && (
+  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+    <li className="nav-item me-4">
+      <Link
+        className={`nav-link text-decoration-none text-center ${location.pathname === "/" ? "active" : ""}`}
+        to="/"
+      >
+        Home
+      </Link>
+    </li>
+    
+    <li className="nav-item">
+      <Link
+        className={`nav-link text-decoration-none ${location.pathname === "/about" ? "active" : ""}`}
+        to="/about"
+      >
+        About
+      </Link>
+      
+    </li>
+    
+  </ul>
+  
+)}
+
+
+
+
+
+
+          {/* Theme toggle */}
+       {isLoggedIn && (
+  <div
+    className="d-flex align-items-center mt-2   mb-2"
+    style={{ gap: '6px', marginRight: '1rem' }}
+  >
+    <label className="switch mb-0 ">
+      <input
+        type="checkbox"
+        checked={isDark}
+        onChange={toggleMode}
+      />
+      <span className="slider round"></span>
+    </label>
+    <span
+      className={`mode-label ${isDark ? 'text-light' : 'text-dark'}`}
+      style={{ fontSize: '1rem' }}
+    >
+      {isDark ? '🌙' : '🌞'}
+    </span>
+  </div>
+)}
 
 {/* SEARCH BOX */}
 
         {isLoggedIn && (
   <div
-    className="position-relative me-3"
+    className="position-relative  "
     style={{
       borderRadius: '30px',
       background: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
@@ -103,10 +147,17 @@ function Navbar({ showAlert }) {
       minWidth: '250px',
     }}
   >
-    <i
-      className="fas fa-search me-2"
-      style={{ color: isDark ? '#00d9ff' : '#333' }}
-    />
+   <i
+  className="fas fa-search me-2 d-flex align-items-center"
+  style={{
+    color: isDark ? '#00d9ff' : '#333',
+    fontSize: '1rem',
+    height: '100%',       // Ensures it takes up full container height
+    display: 'flex',       // Needed for vertical centering
+    alignItems: 'center',  // Vertically center it
+  }}
+/>
+
     <input
       type="text"
       className="form-control border-0 bg-transparent p-0 shadow-none"
@@ -121,89 +172,77 @@ function Navbar({ showAlert }) {
 )}
 
 
-          {/* Theme toggle */}
-          <div className="d-flex align-items-center me-3">
-            <label className="switch me-2 mb-0">
-              <input type="checkbox" checked={isDark} onChange={toggleMode} />
-              <span className="slider round"></span>
-            </label>
-            <span className={`mode-label ${isDark ? 'text-light' : 'text-dark'}`}>
-              {isDark ? '🌙' : '🌞'}
-            </span>
-          </div>
 
           {/* Auth Buttons */}
           {!isLoggedIn ? (
-          <div className="d-flex gap-2">
-  <Link to="/login">
+  <div className="d-flex gap-2 ms-auto">
+    <Link to="/login">
+      <button
+        className="px-4 py-2 fw-semibold rounded-pill border-0 d-flex align-items-center gap-2"
+        style={{
+          background: 'linear-gradient(to right, #00c9ff, #92fe9d)',
+          color: '#000',
+          boxShadow: '0 0 12px rgba(0, 201, 255, 0.5)',
+          transition: 'all 0.3s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 201, 255, 0.8)';
+          e.currentTarget.style.transform = 'translateY(-2px)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = '0 0 12px rgba(0, 201, 255, 0.5)';
+          e.currentTarget.style.transform = 'translateY(0)';
+        }}
+      >
+        <i className="fas fa-sign-in-alt"></i> Login
+      </button>
+    </Link>
+
+    <Link to="/signup">
+      <button
+        className="px-4 py-2 fw-semibold rounded-pill border-0 d-flex align-items-center gap-2 text-white"
+        style={{
+          background: 'linear-gradient(135deg, #8e2de2, #4a00e0)',
+          boxShadow: '0 0 14px rgba(138, 43, 226, 0.5)',
+          transition: 'all 0.3s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = '0 0 20px rgba(138, 43, 226, 0.8)';
+          e.currentTarget.style.transform = 'translateY(-1px)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = '0 0 14px rgba(138, 43, 226, 0.5)';
+          e.currentTarget.style.transform = 'translateY(0)';
+        }}
+      >
+        <i className="fas fa-user-plus"></i> Sign Up
+      </button>
+    </Link>
+  </div>
+) : (
   <button
-    className="px-4 py-2 fw-semibold rounded-pill border-0 d-flex align-items-center gap-2"
+    onClick={handleLogout}
+    className="gap-2 px-4 py-2 fw-semibold rounded-pill border-0 text-white"
     style={{
-      background: 'linear-gradient(to right, #00c9ff, #92fe9d)',
-      color: '#000',
-      boxShadow: '0 0 12px rgba(0, 201, 255, 0.5)',
+      background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
+      boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
       transition: 'all 0.3s ease',
+      fontSize: '0.95rem',
+      letterSpacing: '0.5px',
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 201, 255, 0.8)';
+      e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
       e.currentTarget.style.transform = 'translateY(-2px)';
     }}
     onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow = '0 0 12px rgba(0, 201, 255, 0.5)';
+      e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
       e.currentTarget.style.transform = 'translateY(0)';
     }}
   >
-    <i className="fas fa-sign-in-alt"></i> Login
+    🔒 Logout
   </button>
-</Link>
+)}
 
-
-  <Link to="/signup">
-    <button
-      className="px-4 py-2 fw-semibold rounded-pill border-0 d-flex align-items-center gap-2 text-white"
-      style={{
-        background: 'linear-gradient(135deg, #8e2de2, #4a00e0)',
-        boxShadow: '0 0 14px rgba(138, 43, 226, 0.5)',
-        transition: 'all 0.3s ease',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = '0 0 20px rgba(138, 43, 226, 0.8)';
-        e.currentTarget.style.transform = 'translateY(-1px)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = '0 0 14px rgba(138, 43, 226, 0.5)';
-        e.currentTarget.style.transform = 'translateY(0)';
-      }}
-    >
-      <i className="fas fa-user-plus"></i> Sign Up
-    </button>
-  </Link>
-</div>
-
-          ) : (
-           <button
-  onClick={handleLogout}
-  className="px-4 py-2 fw-semibold rounded-pill border-0 text-white"
-  style={{
-    background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
-    boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
-    transition: 'all 0.3s ease',
-    fontSize: '0.95rem',
-    letterSpacing: '0.5px',
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
-    e.currentTarget.style.transform = 'translateY(-2px)';
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
-    e.currentTarget.style.transform = 'translateY(0)';
-  }}
->
-  🔒 Logout
-</button>
-
-          )}
         </div>
       </div>
     </nav>
