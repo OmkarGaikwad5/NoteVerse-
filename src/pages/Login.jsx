@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Login({ showAlert }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -22,24 +24,23 @@ function Login({ showAlert }) {
 
       if (!res.ok) {
         setErrorMsg(data.message || "Login failed. Please try again.");
-        showAlert("Login Failed", "danger");
+        toast.error("Login Error")
         return;
       }
 
-     if (data.token) {
-  localStorage.setItem("token", data.token);
-  showAlert("Login Successful", "success");
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        toast.success("Login Successfull !!")
+        // 🔥 Dispatch custom event
+        window.dispatchEvent(new Event("authChanged"));
 
-  // 🔥 Dispatch custom event
-  window.dispatchEvent(new Event("authChanged"));
-
-  navigate("/");
-}
+        navigate("/");
+      }
 
     } catch (error) {
       console.error("Login error:", error);
       setErrorMsg("Network error. Please try again.");
-      showAlert("Network error", "danger");
+      toast.error(error)
     }
   };
 
@@ -83,7 +84,7 @@ function Login({ showAlert }) {
           </button>
 
           {errorMsg && (
-            <div className="alert alert-danger mt-3 shadow-sm">{errorMsg}</div>
+            <div className="toast toast-success mt-3 shadow-sm">{errorMsg}</div>
           )}
         </form>
 

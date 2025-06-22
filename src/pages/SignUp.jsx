@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import {toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function SignUp({ showAlert }) {
+function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -38,18 +41,18 @@ function SignUp({ showAlert }) {
 
       if (!res.ok) {
         setErrorMsg(data.message || "Signup failed.");
-        showAlert("Signup Failed", "danger");
+        toast.error("Signup Failed");
         return;
       }
 
       setSuccessMsg("Signup successful! Redirecting...");
-      showAlert("Signup Successful", "success");
+      toast.success("Signup Successful");
       localStorage.setItem("token", data.token);
-      setTimeout(() => navigate("/"), 1500);
+      setTimeout(() => navigate("/login"), 500);
 
     } catch (error) {
       setErrorMsg("Network error. Please try again.");
-      showAlert("Network error during signup", "danger",error);
+      toast.error("Network error during signup", error);
     }
   };
 
@@ -103,10 +106,10 @@ function SignUp({ showAlert }) {
           </button>
 
           {errorMsg && (
-            <div className="alert alert-danger mt-3 shadow-sm">{errorMsg}</div>
+            <div className="toast toast-error mt-3 shadow-sm">{errorMsg}</div>
           )}
           {successMsg && (
-            <div className="alert alert-success mt-3 shadow-sm">{successMsg}</div>
+            <div className="toast toast-success mt-3 shadow-sm">{successMsg}</div>
           )}
         </form>
 

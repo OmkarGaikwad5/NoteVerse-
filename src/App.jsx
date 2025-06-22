@@ -1,42 +1,49 @@
-// App.js
+// App.jsx
 import './styles/App.css';
 import About from './components/About';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import Alert from './components/Alert'; // ✅ import Alert
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NoteState from './context/notes/NoteState';
 import Notes from './components/Notes';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+// ✅ Toastify
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
-  const [alert, setAlert] = useState(null);
-
-  const showAlert = (message, type) => {
-    setAlert({ message, type });
-    setTimeout(() => setAlert(null), 3000); // hide after 3 seconds
-  };
-
   return (
     <NoteState>
       <BrowserRouter>
         <Navbar />
-        <Alert alert={alert} /> {/* ✅ Display Alert */}
+
+        {/* ✅ Toast Container at global level */}
+        <ToastContainer 
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="light"
+        />
+
         <Routes>
           <Route
             path="/"
             element={
               <DndProvider backend={HTML5Backend}>
-                <Notes showAlert={showAlert} />
+                <Notes />
               </DndProvider>
             }
           />
-          <Route path="/login" element={<Login showAlert={showAlert} />} />
-          <Route path="/signup" element={<SignUp showAlert={showAlert} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
@@ -45,4 +52,3 @@ function App() {
 }
 
 export default App;
-

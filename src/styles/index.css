@@ -6,19 +6,22 @@
 .nav-link:hover {
   background-color: rgba(40, 167, 69, 0.2);
   color: #ffffff !important;
-  border-radius: 4px; /* Add rounded corners on hover */
+  border-radius: 4px;
+  /* Add rounded corners on hover */
 }
 
 /* Navbar Brand Hover Effect */
 .navbar-brand:hover {
   color: #28a745 !important;
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
+  /* Underline on hover */
 }
 
 /* Input Search Placeholder */
 input[type="search"]::placeholder {
   color: #bbb;
-  font-style: italic; /* Slight italic for better contrast */
+  font-style: italic;
+  /* Slight italic for better contrast */
 }
 
 /* Body Global Styles (Light & Dark Mode) */
@@ -87,11 +90,12 @@ body.dark-mode {
 }
 
 /* Toggle Active State */
-input:checked + .slider {
-  background-color: #4caf50; /* Green when active */
+input:checked+.slider {
+  background-color: #4caf50;
+  /* Green when active */
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(26px);
 }
 
@@ -107,12 +111,14 @@ input:checked + .slider:before {
   pointer-events: none;
 }
 
-input:checked + .slider .mode-label {
-  opacity: 0; /* Hide when dark mode is active */
+input:checked+.slider .mode-label {
+  opacity: 0;
+  /* Hide when dark mode is active */
 }
 
-input:not(:checked) + .slider .mode-label {
-  opacity: 1; /* Show when light mode is active */
+input:not(:checked)+.slider .mode-label {
+  opacity: 1;
+  /* Show when light mode is active */
 }
 
 /* Improved Mobile View */
@@ -164,7 +170,8 @@ h2 {
 
 /* Dark mode support */
 body.dark-mode .section-title::after {
-  background-color: aqua; /* lighter green for dark background */
+  background-color: aqua;
+  /* lighter green for dark background */
 }
 
 /* Base styling for links */
@@ -183,18 +190,21 @@ body.dark-mode .section-title::after {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #007bff; /* Blue color */
+  background-color: #007bff;
+  /* Blue color */
   transition: width 0.3s ease;
 }
 
 /* Active link styling */
 .nav-link.active {
-  color: #007bff; /* Blue color for active links */
+  color: #007bff;
+  /* Blue color for active links */
 }
 
 /* Hover effect on link */
 .nav-link:hover {
-  color: #007bff; /* Change text color on hover */
+  color: #007bff;
+  /* Change text color on hover */
 }
 
 .nav-link:hover::after {
@@ -209,23 +219,29 @@ body.dark-mode .section-title::after {
 
 /* Custom Hover Effect with Gradient */
 .nav-link:hover {
-  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient from pink to orange */
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  /* Gradient from pink to orange */
   color: #ffffff !important;
-  border-radius: 4px; /* Add rounded corners on hover */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 4px;
+  /* Add rounded corners on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
 }
 
 /* Navbar Brand Hover Effect */
 .navbar-brand:hover {
   color: #28a745 !important;
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
+  /* Underline on hover */
 }
 
 /* Active link styling */
 .nav-link.active {
-  color: #ff7e5f; /* Active color that matches the hover gradient */
+  color: #ff7e5f;
+  /* Active color that matches the hover gradient */
   font-weight: bold;
-  text-decoration: underline; /* Underline for active state */
+  text-decoration: underline;
+  /* Underline for active state */
 }
 
 /* Underline effect on hover */
@@ -236,7 +252,8 @@ body.dark-mode .section-title::after {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #ff7e5f; /* Pink color */
+  background-color: #ff7e5f;
+  /* Pink color */
   transition: width 0.3s ease;
 }
 
@@ -251,9 +268,12 @@ body.dark-mode .section-title::after {
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 50px;  /* Rounded corners */
-  transition: all 0.3s ease;  /* Smooth transitions */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+  border-radius: 50px;
+  /* Rounded corners */
+  transition: all 0.3s ease;
+  /* Smooth transitions */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
 }
 
 .custom-btn-login {
@@ -266,7 +286,8 @@ body.dark-mode .section-title::after {
   background-color: #007bff;
   color: #fff;
   border-color: #0056b3;
-  transform: translateY(-2px);  /* Button lift effect on hover */
+  transform: translateY(-2px);
+  /* Button lift effect on hover */
 }
 
 .custom-btn-signup {
@@ -278,13 +299,15 @@ body.dark-mode .section-title::after {
 .custom-btn-signup:hover {
   background-color: #0056b3;
   border-color: #004085;
-  transform: translateY(-2px);  /* Button lift effect on hover */
+  transform: translateY(-2px);
+  /* Button lift effect on hover */
 }
 
 /* Optional: Add active state styles for clicks */
 .custom-btn-login:active,
 .custom-btn-signup:active {
-  transform: translateY(0px);  /* Remove lift on click */
+  transform: translateY(0px);
+  /* Remove lift on click */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -293,10 +316,14 @@ body.dark-mode .section-title::after {
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 50px;  /* Rounded corners */
-  transition: all 0.3s ease;  /* Smooth transitions */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
-  border: 2px solid #007bff;  /* Border color */
+  border-radius: 50px;
+  /* Rounded corners */
+  transition: all 0.3s ease;
+  /* Smooth transitions */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  border: 2px solid #007bff;
+  /* Border color */
   background-color: transparent;
   color: #007bff;
 }
@@ -305,17 +332,20 @@ body.dark-mode .section-title::after {
   background-color: #007bff;
   color: #fff;
   border-color: #0056b3;
-  transform: translateY(-2px);  /* Button lift effect on hover */
+  transform: translateY(-2px);
+  /* Button lift effect on hover */
 }
 
 .custom-btn:active {
-  transform: translateY(0px);  /* Remove lift on click */
+  transform: translateY(0px);
+  /* Remove lift on click */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Add this to your CSS file for hover effect */
 .hover\:bg-danger-dark:hover {
-  background-color: #c82333; /* Darker shade of red for hover */
+  background-color: #c82333;
+  /* Darker shade of red for hover */
 }
 
 /* Container for the notes section */
@@ -324,17 +354,20 @@ body.dark-mode .section-title::after {
   margin: 2rem auto;
   padding: 1rem 1.5rem;
   border-radius: 12px;
-  background-color: #ffffff; /* Light background for light mode */
+  background-color: #ffffff;
+  /* Light background for light mode */
   color: #212529;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark mode styles */
 body.dark-mode .notes-container {
-  background-color: #1e1e1e; /* Darker background */
-  color: #f1f1f1; /* Light text */
-  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+  background-color: #1e1e1e;
+  /* Darker background */
+  color: #f1f1f1;
+  /* Light text */
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 /* Header with title and add button */
@@ -372,24 +405,27 @@ body.dark-mode .notes-container {
   font-size: 1.2rem;
   text-align: center;
   margin-top: 2rem;
-  color: #666666; /* Light mode gray */
+  color: #666666;
+  /* Light mode gray */
   transition: color 0.3s ease;
 }
 
 body.dark-mode .no-notes-msg {
-  color: #bbbbbb; /* Lighter gray for dark mode */
+  color: #bbbbbb;
+  /* Lighter gray for dark mode */
 }
 
-.your-notes{
+.your-notes {
   color: red;
 }
 
-.no-notes{
+.no-notes {
   color: red;
 }
 
 .text-muted {
-  color: #6c757d; /* default muted color */
+  color: #6c757d;
+  /* default muted color */
 }
 
 body.dark-mode .text-muted {
@@ -397,8 +433,10 @@ body.dark-mode .text-muted {
 }
 
 .card {
-  width: 100%;       /* Ensure card uses full column width */
-  min-width: 250px;  /* Optional minimum width */
+  width: 100%;
+  /* Ensure card uses full column width */
+  min-width: 250px;
+  /* Optional minimum width */
 }
 
 .card-body {
@@ -411,8 +449,10 @@ body.dark-mode .text-muted {
 }
 
 .card-text {
-  white-space: normal; /* Avoid vertical stacking by breaking lines normally */
+  white-space: normal;
+  /* Avoid vertical stacking by breaking lines normally */
 }
+
 .notes-container {
   display: flex;
   flex-wrap: wrap;
@@ -420,16 +460,18 @@ body.dark-mode .text-muted {
 }
 
 .note-card {
-  flex: 1 1 300px; /* grow/shrink with base width 300px */
+  flex: 1 1 300px;
+  /* grow/shrink with base width 300px */
   max-width: 300px;
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background: white;
-  min-height: 250px; /* same height for all cards */
+  min-height: 250px;
+  /* same height for all cards */
 }
 
 .note-title {
@@ -441,8 +483,10 @@ body.dark-mode .text-muted {
 }
 
 .note-content {
-  flex-grow: 1; /* take all remaining space */
-  overflow-y: auto; /* scroll if content is too long */
+  flex-grow: 1;
+  /* take all remaining space */
+  overflow-y: auto;
+  /* scroll if content is too long */
   font-size: 14px;
   line-height: 1.4;
 }
