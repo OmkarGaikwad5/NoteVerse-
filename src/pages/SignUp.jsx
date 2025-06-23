@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
+
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -9,6 +11,7 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
+  const [showPassword, setShowPassword] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -56,7 +59,7 @@ function SignUp() {
       setTimeout(() => {
         toast.success("Signup successful!");
         navigate("/");
-      }, 100);
+      }, 1000);
 
     } catch (error) {
       console.error("Signup error:", error);
@@ -96,17 +99,24 @@ function SignUp() {
               required
             />
           </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              className="form-control shadow-sm border-0 p-3"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="new-password"
-              required
-            />
-          </div>
+          <div className="mb-3 position-relative">
+  <input
+    type={showPassword ? "text" : "password"}
+    className="form-control shadow-sm border-0 p-3 pe-5"
+    placeholder="Password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    autoComplete="new-password"
+    required
+  />
+  <span
+    className="position-absolute top-50 end-0 translate-middle-y me-3"
+    style={{ cursor: "pointer", color: "#888" }}
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? <FaEyeSlash /> : <FaEye />}
+  </span>
+</div>
           <button
             type="submit"
             className="btn btn-primary w-100 py-2 shadow-sm border-0"

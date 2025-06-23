@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -36,7 +38,7 @@ function Login() {
         // ✅ Ensure toast after navigation so it renders properly
         setTimeout(() => {
           toast.success("Login successful!");
-        }, 100);
+        }, 1000);
       }
 
     } catch (error) {
@@ -66,17 +68,39 @@ function Login() {
               required
             />
           </div>
-          <div className="mb-3">
+                    <div className="mb-3">
             <input
-              type="password"
+              type="email"
               className="form-control shadow-sm border-0 p-3"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              required
+            />
+          </div>
+
+          {/* 👁 Password Field with Toggle */}
+          <div className="mb-3 position-relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              className="form-control shadow-sm border-0 p-3 pe-5"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
               required
             />
+            <span
+              className="position-absolute top-50 end-0 translate-middle-y me-3"
+              style={{ cursor: "pointer", color: "#888" }}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
+
+
 
           <button
             type="submit"
