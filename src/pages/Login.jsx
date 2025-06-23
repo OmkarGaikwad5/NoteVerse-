@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
@@ -31,9 +31,12 @@ function Login() {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        toast.success("Login successful!");
         window.dispatchEvent(new Event("authChanged"));
         navigate("/");
+        // ✅ Ensure toast after navigation so it renders properly
+        setTimeout(() => {
+          toast.success("Login successful!");
+        }, 100);
       }
 
     } catch (error) {
@@ -45,7 +48,6 @@ function Login() {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <ToastContainer />
       <div
         className="card shadow-lg p-5"
         style={{ width: '100%', maxWidth: '380px', borderRadius: '12px' }}

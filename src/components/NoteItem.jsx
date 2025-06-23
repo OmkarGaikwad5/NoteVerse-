@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import NoteContext from '../context/notes/NoteContext';
 import "../styles/Note.css"
-import {toast, ToastContainer } from 'react-toastify';
+import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Noteitem = ({ note, updateNote, viewNote }) => {

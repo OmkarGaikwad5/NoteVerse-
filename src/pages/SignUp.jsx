@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function SignUp() {
@@ -49,12 +49,14 @@ function SignUp() {
       }
 
       setSuccessMsg("Signup successful! Redirecting...");
-      toast.success("Signup successful!");
-
       localStorage.setItem("token", data.token);
       window.dispatchEvent(new Event("authChanged"));
 
-      setTimeout(() => navigate("/"), 1000);
+      // ✅ Delay toast to ensure it's visible before unmount
+      setTimeout(() => {
+        toast.success("Signup successful!");
+        navigate("/");
+      }, 100);
 
     } catch (error) {
       console.error("Signup error:", error);
@@ -65,7 +67,6 @@ function SignUp() {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-gradient">
-      <ToastContainer />
       <div
         className="card shadow-lg p-5"
         style={{ width: '100%', maxWidth: '420px', borderRadius: '10px' }}

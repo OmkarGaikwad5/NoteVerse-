@@ -3,7 +3,7 @@ import NoteContext from '../context/notes/NoteContext';
 import Noteitem from './NoteItem';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Note.css';
-import {toast, ToastContainer } from 'react-toastify';
+import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Notes = () => {
