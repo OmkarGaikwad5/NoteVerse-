@@ -66,106 +66,117 @@ function Navbar() {
           <span className="navbar-toggler-icon" />
         </button>
 
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
-  {/* ✅ Show NOTHING on landing page except brand */}
-  {location.pathname === "/" ? null : (
-    <>
-      {isLoggedIn && (
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item me-4">
-            <Link
-              className={`nav-link text-decoration-none text-center ${location.pathname === "/home" ? "active" : ""}`}
-              to="/home"
-            >
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              className={`nav-link text-decoration-none ${location.pathname === "/about" ? "active" : ""}`}
-              to="/about"
-            >
-              About
-            </Link>
-          </li>
-        </ul>
-      )}
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {/* ✅ Show NOTHING on landing page except brand */}
+          {location.pathname === "/" ? null : (
+            <>
+              {isLoggedIn && (
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li className="nav-item me-4">
+                    <Link
+                      className={`nav-link text-decoration-none text-center ${location.pathname === "/home" ? "active" : ""}`}
+                      to="/home"
+                    >
+                      Home
+                    </Link>
+                  </li>
 
-      {isLoggedIn && (
-        <div className="d-flex align-items-center mt-2 mb-2" style={{ gap: '6px', marginRight: '1rem' }}>
-          <label className="switch mb-0">
-            <input type="checkbox" checked={isDark} onChange={toggleMode} />
-            <span className="slider round"></span>
-          </label>
-          <span className={`mode-label ${isDark ? 'text-light' : 'text-dark'}`} style={{ fontSize: '1rem' }}>
-            {isDark ? '🌙' : '🌞'}
-          </span>
+                  <li className="nav-item me-4">
+                    <Link
+                      className={`nav-link text-decoration-none ${location.pathname === "/about" ? "active" : ""}`}
+                      to="/about"
+                    >
+                      About
+                    </Link>
+                  </li>
+
+                  <li className="nav-item me-4">
+                    <Link
+                      className={`nav-link text-decoration-none ${location.pathname === "/dashboard" ? "active" : ""}`}
+                      to="/dashboard"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                </ul>
+              )}
+
+
+              {isLoggedIn && (
+                <div className="d-flex align-items-center mt-2 mb-2" style={{ gap: '6px', marginRight: '1rem' }}>
+                  <label className="switch mb-0">
+                    <input type="checkbox" checked={isDark} onChange={toggleMode} />
+                    <span className="slider round"></span>
+                  </label>
+                  <span className={`mode-label ${isDark ? 'text-light' : 'text-dark'}`} style={{ fontSize: '1rem' }}>
+                    {isDark ? '🌙' : '🌞'}
+                  </span>
+                </div>
+              )}
+
+              {isLoggedIn && (
+                <div
+                  className="position-relative"
+                  style={{
+                    borderRadius: '30px',
+                    background: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                    padding: '6px 14px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    boxShadow: isDark
+                      ? '0 0 10px rgba(0, 217, 255, 0.2)'
+                      : '0 0 8px rgba(0, 0, 0, 0.1)',
+                    transition: '0.3s ease-in-out',
+                    backdropFilter: 'blur(8px)',
+                    minWidth: '250px',
+                  }}
+                >
+                  <i
+                    className="fas fa-search me-2 d-flex align-items-center"
+                    style={{
+                      color: isDark ? '#00d9ff' : '#333',
+                      fontSize: '1rem',
+                    }}
+                  />
+                  <input
+                    type="text"
+                    className="form-control border-0 bg-transparent p-0 shadow-none"
+                    placeholder="Search notes..."
+                    style={{
+                      color: isDark ? '#fff' : '#000',
+                      fontWeight: '500',
+                    }}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+              )}
+
+              {isLoggedIn && (
+                <button
+                  onClick={handleLogout}
+                  className="gap-2 px-4 py-2 fw-semibold rounded-pill border-0 text-white"
+                  style={{
+                    background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
+                    boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
+                    transition: 'all 0.3s ease',
+                    fontSize: '0.95rem',
+                    letterSpacing: '0.5px',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  🔒 Logout
+                </button>
+              )}
+            </>
+          )}
         </div>
-      )}
-
-      {isLoggedIn && (
-        <div
-          className="position-relative"
-          style={{
-            borderRadius: '30px',
-            background: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-            padding: '6px 14px',
-            display: 'flex',
-            alignItems: 'center',
-            boxShadow: isDark
-              ? '0 0 10px rgba(0, 217, 255, 0.2)'
-              : '0 0 8px rgba(0, 0, 0, 0.1)',
-            transition: '0.3s ease-in-out',
-            backdropFilter: 'blur(8px)',
-            minWidth: '250px',
-          }}
-        >
-          <i
-            className="fas fa-search me-2 d-flex align-items-center"
-            style={{
-              color: isDark ? '#00d9ff' : '#333',
-              fontSize: '1rem',
-            }}
-          />
-          <input
-            type="text"
-            className="form-control border-0 bg-transparent p-0 shadow-none"
-            placeholder="Search notes..."
-            style={{
-              color: isDark ? '#fff' : '#000',
-              fontWeight: '500',
-            }}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-      )}
-
-      {isLoggedIn && (
-        <button
-          onClick={handleLogout}
-          className="gap-2 px-4 py-2 fw-semibold rounded-pill border-0 text-white"
-          style={{
-            background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
-            boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
-            transition: 'all 0.3s ease',
-            fontSize: '0.95rem',
-            letterSpacing: '0.5px',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
-        >
-          🔒 Logout
-        </button>
-      )}
-    </>
-  )}
-</div>
 
 
       </div>
