@@ -23,7 +23,7 @@ const NoteState = (props) => {
     if (!token) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/notes/fetchallnotes`, {
+      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/notes/fetchallnotes`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
