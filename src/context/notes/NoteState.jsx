@@ -16,14 +16,13 @@ const NoteState = (props) => {
     )
     : notes;
 
-
   // ✅ Fetch all notes
   const getNotes = async () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/notes/fetchallnotes`, {
+      const response = await fetch(`${host}/api/notes/fetchallnotes`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

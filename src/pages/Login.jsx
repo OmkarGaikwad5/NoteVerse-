@@ -23,29 +23,29 @@ function Login() {
       const data = await res.json();
 
       if (!res.ok) {
-        setErrorMsg(data.message || "Login failed. Please try again.");
-        toast.error("Login Error")
+        const message = data.message || data.error || "Login failed. Please try again.";
+        setErrorMsg(message);
+        toast.error(message);
         return;
       }
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        toast.success("Login Successfull !!")
-        // 🔥 Dispatch custom event
+        toast.success("Login successful!");
         window.dispatchEvent(new Event("authChanged"));
-
         navigate("/");
       }
 
     } catch (error) {
       console.error("Login error:", error);
       setErrorMsg("Network error. Please try again.");
-      toast.error(error)
+      toast.error("Network error. Please try again.");
     }
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <ToastContainer />
       <div
         className="card shadow-lg p-5"
         style={{ width: '100%', maxWidth: '380px', borderRadius: '12px' }}
@@ -84,7 +84,7 @@ function Login() {
           </button>
 
           {errorMsg && (
-            <div className="toast toast-success mt-3 shadow-sm">{errorMsg}</div>
+            <div className="text-danger text-center">{errorMsg}</div>
           )}
         </form>
 

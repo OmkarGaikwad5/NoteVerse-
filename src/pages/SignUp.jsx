@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import {toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function SignUp() {
@@ -9,7 +9,7 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
-  
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,11 +19,13 @@ function SignUp() {
 
     if (name.trim().length < 3) {
       setErrorMsg("Name must be at least 3 characters.");
+      toast.error("Name too short");
       return;
     }
 
     if (password.trim().length < 5) {
       setErrorMsg("Password must be at least 5 characters.");
+      toast.error("Password too short");
       return;
     }
 
@@ -40,24 +42,30 @@ function SignUp() {
       const data = await res.json();
 
       if (!res.ok) {
-        setErrorMsg(data.message || "Signup failed.");
-        toast.error("Signup Failed");
+        const message = data.message || data.error || "Signup failed.";
+        setErrorMsg(message);
+        toast.error(message);
         return;
       }
 
       setSuccessMsg("Signup successful! Redirecting...");
-      toast.success("Signup Successful");
+      toast.success("Signup successful!");
+
       localStorage.setItem("token", data.token);
-      setTimeout(() => navigate("/login"), 500);
+      window.dispatchEvent(new Event("authChanged"));
+
+      setTimeout(() => navigate("/"), 1000);
 
     } catch (error) {
+      console.error("Signup error:", error);
       setErrorMsg("Network error. Please try again.");
-      toast.error("Network error during signup", error);
+      toast.error("Network error. Please try again.");
     }
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-gradient">
+      <ToastContainer />
       <div
         className="card shadow-lg p-5"
         style={{ width: '100%', maxWidth: '420px', borderRadius: '10px' }}
@@ -106,10 +114,10 @@ function SignUp() {
           </button>
 
           {errorMsg && (
-            <div className="toast toast-error mt-3 shadow-sm">{errorMsg}</div>
+            <div className="text-danger text-center mt-3">{errorMsg}</div>
           )}
           {successMsg && (
-            <div className="toast toast-success mt-3 shadow-sm">{successMsg}</div>
+            <div className="text-success text-center mt-3">{successMsg}</div>
           )}
         </form>
 
