@@ -18,3 +18,28 @@
 .note-grid .card:hover {
   transform: scale(1.02);
 }
+
+/* Gradient Button Base */
+.btn-gradient {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+/* Hover effect */
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+}
+
+/* Dark Mode Support */
+body.dark .btn-gradient {
+  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  color: #fff;
+}
+
+body.dark .btn-gradient:hover {
+  background: linear-gradient(135deg, #d81b60, #8e24aa);
+}
