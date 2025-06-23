@@ -1,22 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../utils/auth";
 
 const Landing = () => {
   const navigate = useNavigate();
 
-  const handleExplore = () => {
-    if (isLoggedIn()) {
-      navigate("/");
-    } else {
-      navigate("/login");
-    }
-  };
-
   return (
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center text-center px-3 position-relative overflow-hidden">
       
-      {/* ✅ Add this styled background div inside parent, behind everything */}
+      {/* ✅ Background Layer */}
       <div
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
@@ -31,6 +22,7 @@ const Landing = () => {
       <p className="mb-5 lead">Your secure and elegant note manager.</p>
 
       <div className="d-flex gap-3 mt-4">
+        {/* 🚀 Explore Button → Login */}
         <button
           className="fw-semibold rounded-pill border-0 px-4 py-2 text-white"
           style={{
@@ -46,11 +38,12 @@ const Landing = () => {
             e.currentTarget.style.boxShadow = "0 4px 14px rgba(0, 201, 255, 0.4)";
             e.currentTarget.style.transform = "translateY(0)";
           }}
-          onClick={handleExplore}
+          onClick={() => navigate("/login")}
         >
           🚀 Explore
         </button>
 
+        {/* ✨ Sign Up Button */}
         <button
           className="fw-semibold rounded-pill border-0 px-4 py-2 text-white"
           style={{

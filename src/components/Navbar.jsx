@@ -66,68 +66,31 @@ function Navbar() {
           <span className="navbar-toggler-icon" />
         </button>
 
-       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-  {/* Show navbar items only if NOT on landing page */}
-  {location.pathname !== "/landing" && (
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+  {/* ✅ Show NOTHING on landing page except brand */}
+  {location.pathname === "/" ? null : (
     <>
       {isLoggedIn && (
-       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-  <li className="nav-item me-3">
-    <Link
-      className={`nav-link fw-semibold px-3 py-2 rounded text-center ${
-        location.pathname === "/" ? "active-nav" : ""
-      }`}
-      to="/"
-      style={{
-        color: isDark ? "#ffffffcc" : "#333",
-        transition: "all 0.3s ease",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = isDark
-          ? "rgba(255, 255, 255, 0.1)"
-          : "rgba(0, 0, 0, 0.05)";
-        e.currentTarget.style.color = isDark ? "#00e6e6" : "#000";
-        e.currentTarget.style.borderRadius = "12px";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "transparent";
-        e.currentTarget.style.color = isDark ? "#ffffffcc" : "#333";
-      }}
-    >
-      Home
-    </Link>
-  </li>
-
-  <li className="nav-item">
-    <Link
-      className={`nav-link fw-semibold px-3 py-2 rounded text-center ${
-        location.pathname === "/about" ? "active-nav" : ""
-      }`}
-      to="/about"
-      style={{
-        color: isDark ? "#ffffffcc" : "#333",
-        transition: "all 0.3s ease",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = isDark
-          ? "rgba(255, 255, 255, 0.1)"
-          : "rgba(0, 0, 0, 0.05)";
-        e.currentTarget.style.color = isDark ? "#00e6e6" : "#000";
-        e.currentTarget.style.borderRadius = "12px";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "transparent";
-        e.currentTarget.style.color = isDark ? "#ffffffcc" : "#333";
-      }}
-    >
-      About
-    </Link>
-  </li>
-</ul>
-
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <li className="nav-item me-4">
+            <Link
+              className={`nav-link text-decoration-none text-center ${location.pathname === "/home" ? "active" : ""}`}
+              to="/home"
+            >
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={`nav-link text-decoration-none ${location.pathname === "/about" ? "active" : ""}`}
+              to="/about"
+            >
+              About
+            </Link>
+          </li>
+        </ul>
       )}
 
-      {/* Dark Mode Toggle */}
       {isLoggedIn && (
         <div className="d-flex align-items-center mt-2 mb-2" style={{ gap: '6px', marginRight: '1rem' }}>
           <label className="switch mb-0">
@@ -140,7 +103,6 @@ function Navbar() {
         </div>
       )}
 
-      {/* Search Input */}
       {isLoggedIn && (
         <div
           className="position-relative"
@@ -178,47 +140,33 @@ function Navbar() {
         </div>
       )}
 
-      {/* Logout or Auth Buttons */}
-     {isLoggedIn ? (
-  <button
-    onClick={handleLogout}
-    className="gap-2 px-4 py-2 fw-semibold rounded-pill border-0 text-white"
-    style={{
-      background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
-      boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
-      transition: 'all 0.3s ease',
-      fontSize: '0.95rem',
-      letterSpacing: '0.5px',
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
-      e.currentTarget.style.transform = 'translateY(-2px)';
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
-      e.currentTarget.style.transform = 'translateY(0)';
-    }}
-  >
-    🔒 Logout
-  </button>
-) : (
-  location.pathname !== "/landing" &&
-  location.pathname !== "/login" &&
-  location.pathname !== "/signup" && (
-    <div className="d-flex gap-2 ms-auto">
-      <Link to="/login">
-        <button className="btn btn-outline-primary rounded-pill px-4">Login</button>
-      </Link>
-      <Link to="/signup">
-        <button className="btn btn-primary rounded-pill px-4">Sign Up</button>
-      </Link>
-    </div>
-  )
-)}
-
+      {isLoggedIn && (
+        <button
+          onClick={handleLogout}
+          className="gap-2 px-4 py-2 fw-semibold rounded-pill border-0 text-white"
+          style={{
+            background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
+            boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
+            transition: 'all 0.3s ease',
+            fontSize: '0.95rem',
+            letterSpacing: '0.5px',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          🔒 Logout
+        </button>
+      )}
     </>
   )}
 </div>
+
 
       </div>
     </nav>

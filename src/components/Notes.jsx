@@ -111,7 +111,7 @@ const Notes = () => {
             />
           ))
         ) : (
-          <p className="text-muted">No matching notes found.</p>
+          <p className="text-muted">No Notes Found. Add New</p>
         )}
       </div>
 

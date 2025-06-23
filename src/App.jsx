@@ -1,7 +1,6 @@
 // App.jsx
 import './styles/App.css';
 import About from './components/About';
-import Home from './components/Home';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import NoteState from './context/notes/NoteState';
@@ -35,19 +34,25 @@ function App() {
         />
 
         <Routes>
+          {/* ✅ Landing is the new root */}
+          <Route path="/" element={<Landing />} />
+
+          {/* ✅ Notes component now at /home */}
           <Route
-            path="/"
+            path="/home"
             element={
               <DndProvider backend={HTML5Backend}>
                 <Notes />
               </DndProvider>
             }
           />
-          <Route path="/landing" element={<Landing />} />
-          <Route path="*" element={<Navigate to="/landing" />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<About />} />
+
+          {/* ✅ Wildcard route fallback */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </NoteState>
