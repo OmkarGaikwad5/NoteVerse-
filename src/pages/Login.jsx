@@ -68,17 +68,7 @@ function Login() {
               required
             />
           </div>
-                    <div className="mb-3">
-            <input
-              type="email"
-              className="form-control shadow-sm border-0 p-3"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
-          </div>
+                
 
           {/* 👁 Password Field with Toggle */}
           <div className="mb-3 position-relative">
