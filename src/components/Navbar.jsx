@@ -13,21 +13,28 @@ function Navbar() {
   const [mode, setMode] = useState(() => localStorage.getItem('mode') || 'dark');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const checkAuth = () => {
-      const token = localStorage.getItem("token");
-      setIsLoggedIn(!!token);
-    };
+ useEffect(() => {
+  const checkAuth = () => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  };
 
-    document.body.classList.remove('light-mode', 'dark-mode');
-    document.body.classList.add(`${mode}-mode`);
-    localStorage.setItem('mode', mode);
+  document.body.classList.remove('light-mode', 'dark-mode');
+  document.body.classList.add(`${mode}-mode`);
+  localStorage.setItem('mode', mode);
 
-    checkAuth();
+  checkAuth();
 
-    window.addEventListener("authChanged", checkAuth);
-    return () => window.removeEventListener("authChanged", checkAuth);
-  }, [mode]);
+  // ✅ Auto-close hamburger if open
+  const bsCollapse = document.getElementById('navbarSupportedContent');
+  if (bsCollapse && bsCollapse.classList.contains('show')) {
+    bsCollapse.classList.remove('show');
+  }
+
+  window.addEventListener("authChanged", checkAuth);
+  return () => window.removeEventListener("authChanged", checkAuth);
+}, [mode, location.pathname]); // ✅ add location.pathname here
+
 
   const toggleMode = () => {
     setMode(prev => prev === 'dark' ? 'light' : 'dark');
@@ -60,7 +67,13 @@ function Navbar() {
       }}
     >
       <div className="container-fluid text-center">
-        <Link className="navbar-brand fw-bold text-decoration-none" to="/">NoteVerse</Link>
+        <Link
+          className="navbar-brand fw-bold text-decoration-none"
+          to={isLoggedIn ? "/home" : "/"}
+        >
+          NoteVerse
+        </Link>
+
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span className="navbar-toggler-icon" />
@@ -73,7 +86,7 @@ function Navbar() {
               {isLoggedIn && (
                 <ul className="navbar-nav d-flex flex-column flex-lg-row align-items-center gap-2 gap-lg-4 mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <Link className={`nav-link ${location.pathname === "/home" ? "active" : ""}`} to="/home">
+                    <Link className={`nav-link text-decoration-none ${location.pathname === "/home" ? "active" : ""}`} to="/home">
                       Home
                     </Link>
                   </li>
