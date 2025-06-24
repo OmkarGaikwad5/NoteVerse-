@@ -69,41 +69,29 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {/* ✅ Show NOTHING on landing page except brand */}
           {location.pathname === "/" ? null : (
-            <>
+            <div className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-between w-100 gap-3 mt-3 mt-lg-0">
               {isLoggedIn && (
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item me-4">
-                    <Link
-                      className={`nav-link text-decoration-none text-center ${location.pathname === "/home" ? "active" : ""}`}
-                      to="/home"
-                    >
+                <ul className="navbar-nav d-flex flex-column flex-lg-row align-items-center gap-2 gap-lg-4 mb-2 mb-lg-0">
+                  <li className="nav-item">
+                    <Link className={`nav-link ${location.pathname === "/home" ? "active" : ""}`} to="/home">
                       Home
                     </Link>
                   </li>
-
-                  <li className="nav-item me-4">
-                    <Link
-                      className={`nav-link text-decoration-none ${location.pathname === "/about" ? "active" : ""}`}
-                      to="/about"
-                    >
+                  <li className="nav-item">
+                    <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">
                       About
                     </Link>
                   </li>
-
-                  <li className="nav-item me-4">
-                    <Link
-                      className={`nav-link text-decoration-none ${location.pathname === "/dashboard" ? "active" : ""}`}
-                      to="/dashboard"
-                    >
+                  <li className="nav-item">
+                    <Link className={`nav-link ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">
                       Dashboard
                     </Link>
                   </li>
                 </ul>
               )}
 
-
               {isLoggedIn && (
-                <div className="d-flex align-items-center mt-2 mb-2" style={{ gap: '6px', marginRight: '1rem' }}>
+                <div className="d-flex align-items-center gap-2">
                   <label className="switch mb-0">
                     <input type="checkbox" checked={isDark} onChange={toggleMode} />
                     <span className="slider round"></span>
@@ -116,13 +104,11 @@ function Navbar() {
 
               {isLoggedIn && (
                 <div
-                  className="position-relative"
+                  className="d-flex align-items-center"
                   style={{
                     borderRadius: '30px',
                     background: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
                     padding: '6px 14px',
-                    display: 'flex',
-                    alignItems: 'center',
                     boxShadow: isDark
                       ? '0 0 10px rgba(0, 217, 255, 0.2)'
                       : '0 0 8px rgba(0, 0, 0, 0.1)',
@@ -174,8 +160,9 @@ function Navbar() {
                   🔒 Logout
                 </button>
               )}
-            </>
+            </div>
           )}
+
         </div>
 
 

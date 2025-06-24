@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import NoteContext from '../context/notes/NoteContext';
 import "../styles/Note.css"
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Noteitem = ({ note, updateNote, viewNote }) => {
   const { deleteNote } = useContext(NoteContext);
@@ -33,33 +35,43 @@ const Noteitem = ({ note, updateNote, viewNote }) => {
         <div className="card-body d-flex flex-column justify-content-between">
           {/* Title & Icons */}
           <div className="d-flex justify-content-between align-items-start mb-2">
-           <div className="d-flex flex-column flex-grow-1">
-  <div className="d-flex align-items-center justify-content-between mb-1">
-    <h5
-      className="card-title text-truncate mb-0"
-      style={{ maxWidth: '65%' }}
-      title={note.title}
-    >
-      {note.title}
-    </h5>
-    {note.tag && (
-      <span
-        className="badge rounded-pill"
-        style={{
-          background: 'linear-gradient(to right, #36D1DC, #5B86E5)',
-          color: '#fff',
-          fontSize: '0.65rem',
-          padding: '0.3em 0.6em',
-          fontWeight: '500',
-        }}
-      >
-        #{note.tag}
-        
-      </span>
-    )}
+            <div className="d-flex flex-column flex-grow-1">
+              <div className="d-flex align-items-center justify-content-between mb-1">
+                <h5
+                  className="card-title text-truncate mb-0"
+                  style={{
+                    maxWidth: '65%',
+                    textDecoration: note.done ? 'line-through' : 'none',
+                    color: note.done ? '#6c757d' : 'inherit'
+                  }}
+                >
+                  {note.title}
+                </h5>
 
-  </div>
-</div>
+
+                {note.tag && (
+                  <span
+                    className="badge rounded-pill"
+                    style={{
+                      background: 'linear-gradient(to right, #36D1DC, #5B86E5)',
+                      color: '#fff',
+                      fontSize: '0.65rem',
+                      padding: '0.3em 0.6em',
+                      fontWeight: '500',
+                    }}
+                  >
+                    #{note.tag}
+
+
+
+                  </span>
+
+                )}
+
+
+
+              </div>
+            </div>
 
             <div className="d-flex">
               <i
