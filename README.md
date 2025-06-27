@@ -15,7 +15,7 @@ NoteVerse Frontend is a powerful and intuitive note-taking web app built using *
 ## 🚀 Features  
 1) ✅ User-friendly note-taking interface  
 2) 📁 Folder-based organization for notes  
-3) ✍️ Add, edit, delete, and view note  
+3) ✍️ Add, edit, delete, download and view note  
 4) ⚛️ Real-time UI updates with React state and Context API  
 5) 🌗 Light and dark mode toggle for enhanced user experience  
 6) 🚨 Alert system for user feedback on actions  
