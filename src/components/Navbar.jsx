@@ -13,28 +13,26 @@ function Navbar() {
   const [mode, setMode] = useState(() => localStorage.getItem('mode') || 'dark');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
- useEffect(() => {
-  const checkAuth = () => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  };
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
 
-  document.body.classList.remove('light-mode', 'dark-mode');
-  document.body.classList.add(`${mode}-mode`);
-  localStorage.setItem('mode', mode);
+    document.body.classList.remove('light-mode', 'dark-mode');
+    document.body.classList.add(`${mode}-mode`);
+    localStorage.setItem('mode', mode);
 
-  checkAuth();
+    checkAuth();
 
-  // ✅ Auto-close hamburger if open
-  const bsCollapse = document.getElementById('navbarSupportedContent');
-  if (bsCollapse && bsCollapse.classList.contains('show')) {
-    bsCollapse.classList.remove('show');
-  }
+    const bsCollapse = document.getElementById('navbarSupportedContent');
+    if (bsCollapse && bsCollapse.classList.contains('show')) {
+      bsCollapse.classList.remove('show');
+    }
 
-  window.addEventListener("authChanged", checkAuth);
-  return () => window.removeEventListener("authChanged", checkAuth);
-}, [mode, location.pathname]); // ✅ add location.pathname here
-
+    window.addEventListener("authChanged", checkAuth);
+    return () => window.removeEventListener("authChanged", checkAuth);
+  }, [mode, location.pathname]);
 
   const toggleMode = () => {
     setMode(prev => prev === 'dark' ? 'light' : 'dark');
@@ -49,6 +47,10 @@ function Navbar() {
     navigate("/landing");
     toast.success("Logged out successfully");
   };
+
+  // ✅ Define minimal routes
+  const minimalRoutes = ['/', '/login', '/signup'];
+  const isMinimal = minimalRoutes.includes(location.pathname);
 
   return (
     <nav
@@ -67,118 +69,122 @@ function Navbar() {
       }}
     >
       <div className="container-fluid text-center">
-        <Link
-          className="navbar-brand fw-bold text-decoration-none"
-          to={isLoggedIn ? "/home" : "/"}
-        >
-          NoteVerse
-        </Link>
+       {minimalRoutes.includes(location.pathname) ? (
+  <span className="navbar-brand fw-bold text-decoration-none" style={{ cursor: 'default' }}>
+    NoteVerse
+  </span>
+) : (
+  <Link
+    className="navbar-brand fw-bold text-decoration-none"
+    to="/home"
+  >
+    NoteVerse
+  </Link>
+)}
 
 
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-          <span className="navbar-toggler-icon" />
-        </button>
+        {!isMinimal && (
+          <>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+              <span className="navbar-toggler-icon" />
+            </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {/* ✅ Show NOTHING on landing page except brand */}
-          {location.pathname === "/" ? null : (
-            <div className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-between w-100 gap-3 mt-3 mt-lg-0">
-              {isLoggedIn && (
-                <ul className="navbar-nav d-flex flex-column flex-lg-row align-items-center gap-2 gap-lg-4 mb-2 mb-lg-0">
-                  <li className="nav-item">
-                    <Link className={`nav-link text-decoration-none ${location.pathname === "/home" ? "active" : ""}`} to="/home">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">
-                      About
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className={`nav-link ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">
-                      Dashboard
-                    </Link>
-                  </li>
-                </ul>
-              )}
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <div className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-between w-100 gap-3 mt-3 mt-lg-0">
+                {isLoggedIn && (
+                  <ul className="navbar-nav d-flex flex-column flex-lg-row align-items-center gap-2 gap-lg-4 mb-2 mb-lg-0">
+                    <li className="nav-item">
+                      <Link className={`nav-link text-decoration-none ${location.pathname === "/home" ? "active" : ""}`} to="/home">
+                        Home
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">
+                        About
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className={`nav-link ${location.pathname === "/dashboard" ? "active" : ""}`} to="/dashboard">
+                        Dashboard
+                      </Link>
+                    </li>
+                  </ul>
+                )}
 
-              {isLoggedIn && (
-                <div className="d-flex align-items-center gap-2">
-                  <label className="switch mb-0">
-                    <input type="checkbox" checked={isDark} onChange={toggleMode} />
-                    <span className="slider round"></span>
-                  </label>
-                  <span className={`mode-label ${isDark ? 'text-light' : 'text-dark'}`} style={{ fontSize: '1rem' }}>
-                    {isDark ? '🌙' : '🌞'}
-                  </span>
-                </div>
-              )}
+                {isLoggedIn && (
+                  <div className="d-flex align-items-center gap-2">
+                    <label className="switch mb-0">
+                      <input type="checkbox" checked={isDark} onChange={toggleMode} />
+                      <span className="slider round"></span>
+                    </label>
+                    <span className={`mode-label ${isDark ? 'text-light' : 'text-dark'}`} style={{ fontSize: '1rem' }}>
+                      {isDark ? '🌙' : '🌞'}
+                    </span>
+                  </div>
+                )}
 
-              {isLoggedIn && (
-                <div
-                  className="d-flex align-items-center"
-                  style={{
-                    borderRadius: '30px',
-                    background: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-                    padding: '6px 14px',
-                    boxShadow: isDark
-                      ? '0 0 10px rgba(0, 217, 255, 0.2)'
-                      : '0 0 8px rgba(0, 0, 0, 0.1)',
-                    transition: '0.3s ease-in-out',
-                    backdropFilter: 'blur(8px)',
-                    minWidth: '250px',
-                  }}
-                >
-                  <i
-                    className="fas fa-search me-2 d-flex align-items-center"
+                {isLoggedIn && (
+                  <div
+                    className="d-flex align-items-center"
                     style={{
-                      color: isDark ? '#00d9ff' : '#333',
-                      fontSize: '1rem',
+                      borderRadius: '30px',
+                      background: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                      padding: '6px 14px',
+                      boxShadow: isDark
+                        ? '0 0 10px rgba(0, 217, 255, 0.2)'
+                        : '0 0 8px rgba(0, 0, 0, 0.1)',
+                      transition: '0.3s ease-in-out',
+                      backdropFilter: 'blur(8px)',
+                      minWidth: '250px',
                     }}
-                  />
-                  <input
-                    type="text"
-                    className="form-control border-0 bg-transparent p-0 shadow-none"
-                    placeholder="Search notes..."
-                    style={{
-                      color: isDark ? '#fff' : '#000',
-                      fontWeight: '500',
-                    }}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-              )}
+                  >
+                    <i
+                      className="fas fa-search me-2 d-flex align-items-center"
+                      style={{
+                        color: isDark ? '#00d9ff' : '#333',
+                        fontSize: '1rem',
+                      }}
+                    />
+                    <input
+                      type="text"
+                      className="form-control border-0 bg-transparent p-0 shadow-none"
+                      placeholder="Search notes..."
+                      style={{
+                        color: isDark ? '#fff' : '#000',
+                        fontWeight: '500',
+                      }}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                )}
 
-              {isLoggedIn && (
-                <button
-                  onClick={handleLogout}
-                  className="gap-2 px-4 py-2 fw-semibold rounded-pill border-0 text-white"
-                  style={{
-                    background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
-                    boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
-                    transition: 'all 0.3s ease',
-                    fontSize: '0.95rem',
-                    letterSpacing: '0.5px',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
-                >
-                  🔒 Logout
-                </button>
-              )}
+                {isLoggedIn && (
+                  <button
+                    onClick={handleLogout}
+                    className="gap-2 px-4 py-2 fw-semibold rounded-pill border-0 text-white"
+                    style={{
+                      background: 'linear-gradient(135deg, #ff416c, #ff4b2b)',
+                      boxShadow: '0 0 12px rgba(255, 65, 108, 0.6)',
+                      transition: 'all 0.3s ease',
+                      fontSize: '0.95rem',
+                      letterSpacing: '0.5px',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 75, 43, 0.9)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 12px rgba(255, 65, 108, 0.6)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                  >
+                    🔒 Logout
+                  </button>
+                )}
+              </div>
             </div>
-          )}
-
-        </div>
-
-
+          </>
+        )}
       </div>
     </nav>
   );

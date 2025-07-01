@@ -10,7 +10,7 @@ import SignUp from './pages/SignUp';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Landing from './components/Landing';
-import {isLoggedIn} from "./utils/auth"
+import { isLoggedIn } from "./utils/auth"
 import Dashboard from './components/Dashboard';
 
 // ✅ Toastify
@@ -53,9 +53,9 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<About />} />
           <Route
-  path="/dashboard"
-  element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
-/>
+            path="/dashboard"
+            element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
+          />
 
 
           {/* ✅ Wildcard route fallback */}
